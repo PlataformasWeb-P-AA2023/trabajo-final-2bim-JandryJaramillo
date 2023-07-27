@@ -1,0 +1,34 @@
+{% extends "master.html" %}
+
+{% block content %}
+
+<table id="tabla_datos">
+
+  <thead>
+    <tr>
+      <th>Nombre del barrio</th>
+      <th>Siglas</th>
+      <th>Opciones</th>
+    </tr>
+  </thead>
+
+  {% for e in personas %}
+  <tr>
+    <td> {{e.nombre}}</td>
+    <td> {{e.siglas}}</td>
+    <td> 
+      <a href="{% url 'editarBarrios' e.id %}">editar</a> -
+      <a href="{% url 'eliminarBarrios' e.id %}"
+      onclick="return confirm('¿Está seguro de la eliminación?')" >
+      eliminar</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#tabla_datos').DataTable();
+  });
+</script>
+{% endblock %}

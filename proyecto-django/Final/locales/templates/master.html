@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Editorial by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+</head>
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+
+                <!-- Header -->
+                <header id="header">
+                    <a class="logo"><strong>Locales</strong> by Jandry Jaramillo</a>
+                    {% if user.is_authenticated %}
+                    <li> <span class="nombre_usuario"> Bienvenido: {{user.username}} </span></li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout_view' %}">salir</a></li>
+                    {% else %}
+                    <li>[<a href="{% url 'login' %}">ingresar</a>]</li>
+                    {% endif %}
+                </header>
+
+                <!-- Section -->
+                <section>
+                    {% block content %}
+                    {% endblock %}
+                </section>
+                <section>
+                    <div class="posts">
+                        <article>
+                            <a href="#" class="image"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a>
+                            <h3>Agregar Personas</h3>
+                            <p>agregar persona a la base de datos.</p>
+                            <ul class="actions">
+                                <li><a href="{% url 'crearPersonas' %}" class="button">Agregar</a></li>
+                            </ul>
+                        </article>
+                        <article>
+                            <a href="#" class="image"><img src="{% static 'images/pic02.jpg' %}" alt="" /></a>
+                            <h3>Agregar Barrios</h3>
+                            <p>agregar barrio a la base de datos.</p>
+                            <ul class="actions">
+                                <li><a href="{% url 'crearBarrios' %}" class="button">Agregar</a></li>
+                            </ul>
+                        </article>
+                        <article>
+                            <a href="#" class="image"><img src="{% static 'images/pic03.jpg' %}" alt="" /></a>
+                            <h3>Agregar Local de Comida</h3>
+                            <p>agregar local de comida a la base de datos.</p>
+                            <ul class="actions">
+                                <li><a href="{% url 'crearLocalComida' %}" class="button">Agregar</a></li>
+                            </ul>
+                        </article>
+                        <article>
+                            <a href="#" class="image"><img src="{% static 'images/pic04.jpg' %}" alt="" /></a>
+                            <h3>Agregar Local de Repuestos</h3>
+                            <p>agregar local de repuesto a la base de datos.</p>
+                            <ul class="actions">
+                                <li><a href="{% url 'crearLocalRepuesto' %}" class="button">Agregar</a></li>
+                            </ul>
+                        </article>
+                    </div>
+                </section>
+            </div>
+            <!-- Footer -->
+            <footer id="footer">
+                <p>Loja-Ecuador</p>
+                <p>{% now "j F Y H:i" %}</p>
+            </footer>
+        </div>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div class="inner">
+
+                <!-- Menu -->
+                <nav id="menu">
+                    <header class="major">
+                        <h2>Menu</h2>
+                    </header>
+                    <ul>
+                        <li><a href="{% url 'index' %}">Homepage</a></li>
+                        <li><a href="{% url 'listarPersonas' %}">Listado de Personas</a></li>
+                        <li><a href="{% url 'listarBarrios' %}">Listado de Barrios</a></li>
+                        <li><a href="{% url 'listarLocalComida' %}">Listado de Locales de Comida</a></li>
+                        <li><a href="{% url 'listarLocalRepuesto' %}">Listado de Locales de Repuestos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+{% extends "master.html" %}
+
+{% block content %}
+
+<table id="tabla_datos">
+
+  <thead>
+    <tr>
+      <th>Propietario</th>
+      <th>Dirección</th>
+      <th>Barrio</th>
+      <th>Valor Total de la Mercadería</th>
+      <th>Pago del permiso</th>
+      <th>Opciones</th>
+    </tr>
+  </thead>
+
+  {% for e in personas %}
+  <tr>
+    <td> {{e.propietario}}</td>
+    <td> {{e.direccion}}</td>
+    <td> {{e.barrio}}</td>
+    <td> {{e.valor}}</td>
+    <td> {{e.pagoPermiso}}</td>
+    {% if user.is_authenticated %}
+    <td> 
+      <a href="{% url 'editarLocalRepuesto' e.id %}">editar</a> -
+      <a href="{% url 'eliminarLocalRepuesto' e.id %}"
+      onclick="return confirm('¿Está seguro de la eliminación?')" >
+      eliminar</a>
+    </td>
+    {% endif %}
+  </tr>
+  {% endfor %}
+</table>
+
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#tabla_datos').DataTable();
+  });
+</script>
+{% endblock %}
